@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--tree视图-->
+        <record id="tasks_tree_view" model="ir.ui.view">
+            <field name="name">task_view</field>
+            <field name="model">task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="type"/>
+                    <field name="state"/>
+                    <field name="priority"/>
+                    <field name="module"/>
+                    <field name="project"/>
+                    <field name="propose_people"/>
+                    <field name="business_person"/>
+                    <field name="working_hours"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--form视图-->
+        <record id="task_form_view" model="ir.ui.view">
+            <field name="name">task_form_view</field>
+            <field name="model">task</field>
+            <field name="arch" type="xml">
+                <form string="Problems">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" nolabel="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="type"/>
+                                <field name="module"/>
+                                <field name="project"/>
+                                <field name="propose_people"/>
+                                <field name="business_person"/>
+                            </group>
+                            <group>
+                                <field name="state"/>
+                                <field name="priority"/>
+                                <field name="working_hours"/>
+                                <field name="actual_hours"/>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                                <field name="actual_start_time"/>
+                                <field name="actual_end_time"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="solution"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--action-->
+        <record model="ir.actions.act_window" id="task_action">
+            <field name="name">任务管理</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    任务管理
+                </p>
+                <p>
+                    创建一个任务吧...
+                </p>
+            </field>
+        </record>
+
+
+        <!--菜单-->
+        <menuitem name="任务管理" id="menu_task_root" sequence="90"/>
+
+        <menuitem id="menu_task" name="任务" parent="menu_task_root"
+                  action="task_action" sequence="10"/>
+
+
+    </data>
+</odoo>
