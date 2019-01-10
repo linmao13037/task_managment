@@ -17,6 +17,7 @@
         'views/task.xml',
 
         'report/task_export.xml',
+        'report/task_import.xml',
     ],
     'qweb': [],
     'installable': True,

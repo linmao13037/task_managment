@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_task,task,model_task,base.group_user,1,1,1,1
+task_import,task.import,model_task_import,base.group_user,1,1,1,1
+task_export,task.export,model_task_export,base.group_user,1,1,1,1
+
 

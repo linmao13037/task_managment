@@ -17,31 +17,43 @@ class TaskExport(models.TransientModel):
 
     def generate_excel(self, task_ids):
         workbook = xlwt.Workbook(encoding='utf-8')
-        worksheet = workbook.add_sheet('任务清单')
-        worksheet.col(0).width = (10 * 367)  # 设置表格的宽度
-        worksheet.col(1).width = (30 * 367)
-        worksheet.col(2).width = (15 * 367)
-        worksheet.col(3).width = (15 * 367)
+        worksheet = workbook.add_sheet(str(fields.Date.today()).replace('-', ''), cell_overwrite_ok=True)
+        worksheet.col(0).width = (1 * 367)  # 设置表格的宽度
+        worksheet.col(1).width = (10 * 367)
+        worksheet.col(2).width = (10 * 367)
+        worksheet.col(3).width = (40 * 367)
+        worksheet.col(4).width = (10 * 367)
+        worksheet.col(5).width = (10 * 367)
+        worksheet.col(6).width = (10 * 367)
+        worksheet.col(7).width = (10 * 367)
+        worksheet.col(8).width = (30 * 367)
+        # worksheet.col(0).height  = 1  # 设置表格的高度
+
 
         style = xlwt.XFStyle()  # 初始化样式
         font = xlwt.Font()  # 为样式创建字体
-        font.name = '微软雅黑'  # 字体
-        font.bold = True   # 加粗
-        font.height = 20 * 10  # 字体大小
+        font.name = '等线'  # 字体
+        # font.bold = True   # 加粗
+        font.height = 20 * 12  # 字体大小
         style.font = font  # 为样式设置字体
 
         # add header
-        header = ['任务号', '任务名称', '开始时间', '结束时间']
+        header = ['', '姓名','任务号', '任务标题', '开始时间', '结束时间', '评估人天', '实际消耗人天', '备注']
         for col in range(len(header)):
             worksheet.write(0, col, header[col], style)
 
         # add data
         for row in range(1, len(task_ids) + 1):
             task_id = task_ids[row - 1]
-            worksheet.write(row, 0, task_id.code if task_id else '')
-            worksheet.write(row, 1, task_id.name if task_id else '')
-            worksheet.write(row, 2, str(task_id.start_time).replace('-', '/') if task_id.start_time else '')
-            worksheet.write(row, 3, str(task_id.end_time).replace('-', '/') if task_id.end_time else '')
+            worksheet.write(row, 0, '', style)
+            worksheet.write(row, 1, task_id.develop_person or '', style)
+            worksheet.write(row, 2, task_id.code or '', style)
+            worksheet.write(row, 3, task_id.name or '', style)
+            worksheet.write(row, 4, str(task_id.start_time).replace('-', '/') or '', style)
+            worksheet.write(row, 5, str(task_id.end_time).replace('-', '/') or '', style)
+            worksheet.write(row, 6, task_id.working_hours or '', style)
+            worksheet.write(row, 7, task_id.actual_hours or '', style)
+            worksheet.write(row, 8, task_id.remark or '', style)
 
         # save
         buffer = BytesIO()

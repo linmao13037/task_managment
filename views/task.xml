@@ -3,7 +3,7 @@
     <data>
 
         <!--tree视图-->
-        <record id="tasks_tree_view" model="ir.ui.view">
+        <record id="task_tree_view" model="ir.ui.view">
             <field name="name">task_view</field>
             <field name="model">task</field>
             <field name="arch" type="xml">
@@ -44,6 +44,8 @@
                                 <field name="project"/>
                                 <field name="propose_people"/>
                                 <field name="business_person"/>
+                                <field name="develop_person"/>
+                                <field name="remark"/>
                             </group>
                             <group>
                                 <field name="state"/>

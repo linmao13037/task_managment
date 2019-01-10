@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="task_import_form" model="ir.ui.view">
+        <field name="name">task_import_form</field>
+        <field name="model">task.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="导入Excel文件">
+                    <field name="file"/>
+                </group>
+                <footer>
+                    <button name="action_import" string="确认" type="object" class="oe_highlight"/>
+                    or
+                    <button string="取消" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="task_import_action"
+                name="导入Excel文件"
+                src_model="task"
+                res_model="task.import"
+                view_mode="form"
+                target="new"
+                view_id="task_import_form"
+                key2="client_action_multi"/>
+</odoo>
