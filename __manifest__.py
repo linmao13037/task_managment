@@ -13,9 +13,7 @@
     'demo': [],
     'data': [
         'security/ir.model.access.csv',
-
         'views/task.xml',
-
         'report/task_export.xml',
         'report/task_import.xml',
     ],

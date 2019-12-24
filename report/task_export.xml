@@ -2,8 +2,8 @@
 <odoo>
     <record id="excel_task_export_action" model="ir.actions.server">
         <field name="name">导出Excel文件</field>
-        <field name="model_id" ref="task_management.model_task_export"/>
-        <field name="binding_model_id" ref="task_management.model_task"/>
+        <field name="model_id" ref="task_managment.model_task_export"/>
+        <field name="binding_model_id" ref="task_managment.model_task"/>
         <field name="state">code</field>
         <field name="code">
             action = env['task.export'].action_export_data()
